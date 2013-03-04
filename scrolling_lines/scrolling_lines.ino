@@ -6,7 +6,8 @@
 
 Adafruit_BicolorMatrix matrix = Adafruit_BicolorMatrix();
 
-int speed = 15;
+int speed = 20;
+int speedInc = 20;
 
 void setup() {
   Serial.begin(9600);
@@ -17,8 +18,17 @@ void setup() {
 }
 
 void loop() {
+  drawLines(speed);
 
+  if (speed == 200 || speed == 20) {
+    speedInc = -speedInc;
+  }
+  speed = speed + speedInc;
+}
+
+void drawLines(int speed) {
   for (int8_t i = 0; i < 8; i++) {
+    // for some reason I need to turn off LEDs before turning them on WTF
     matrix.drawLine(i,0, i, 7, LED_OFF);
     matrix.drawLine(i,0, i, 7, LED_RED);
 
@@ -53,6 +63,5 @@ void loop() {
 
     matrix.writeDisplay();
     delay(speed);
-
   }
 }
