@@ -13,6 +13,7 @@ void setup() {
   Serial.println("8x8 LED Matrix Test");
 
   matrix.begin(0x70);  // pass in the address
+  matrix.setRotation(0);
 }
 
 void loop() {
@@ -51,16 +52,4 @@ void loop() {
 
   matrix.clear();
 
-//  for (int i = 8; i > 0; i--) {
-//    matrix.clear();
-//    drawRect(i);
-//    matrix.writeDisplay();
-//    delay(100);
-//  }
-
-  matrix.setRotation(0);
-}
-
-void drawRect(int width) {
-  matrix.drawRect(0, 0, width, width, LED_RED);
 }
